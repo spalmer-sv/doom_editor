@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 19:00:11 by spalmer           #+#    #+#             */
-/*   Updated: 2020/12/12 23:25:53 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/03 18:13:31 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,34 +47,13 @@ void	bresenham(int x0, int y0, int x1, int y1, t_all *all)
 	}	
 }
 
-// void	draw_one_sector(t_all *all)
-// {
-// 	t_vertex *temp;
-// 	t_vertex first;
-// 	t_vertex second;
-	
-// 	temp = all->sectors->vertex;
-// 	if (all->sectors == NULL || all->sectors->vertex == NULL || all->sectors->vertex->next == NULL)
-// 		return ;
-// 	SDL_SetRenderDrawColor(all->win.render, 0xff, 0xff, 0xff, 0);
-// 	while(temp->next)
-// 	{
-// 		first.x = temp->x;
-// 		first.y = temp->y;
-// 		second.x = temp->next->x;
-// 		second.y = temp->next->y;
-// 		bresenham(first.x * 2, first.y * 2, second.x * 2, second.y * 2, all);
-// 		temp = temp->next;
-// 	}
-// }
-
 void	draw_one_sector(t_sector *sector, t_all *all)
 {
 	t_vertex *temp;
 	t_vertex first;
 	t_vertex second;
 	
-	temp = sector->vertex; //SEGA!!!!!!!!
+	temp = sector->vertex; 
 	if (sector->vertex == NULL)
 		return ;
 	if (!sector->vertex->next)
@@ -86,7 +65,7 @@ void	draw_one_sector(t_sector *sector, t_all *all)
 		first.y = temp->y;
 		second.x = temp->next->x;
 		second.y = temp->next->y;
-		bresenham(first.x * 2, first.y * 2, second.x * 2, second.y * 2, all);
+		bresenham(first.x, first.y, second.x, second.y, all);
 		temp = temp->next;
 	}
 }

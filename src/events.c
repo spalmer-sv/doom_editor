@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 22:00:38 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/03 01:01:12 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/03 18:31:56 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,21 @@ void	check_event(t_all *all)
 			if (event.type == SDL_KEYDOWN)
 				check_botton(&event, all, &quit);
 			
-			// if (event.type == SDL_MOUSEMOTION)
-			// {
-				
-			// }
-			
 			if( event.type == SDL_MOUSEBUTTONDOWN )
 			{
 				all->mouse.x = event.motion.x;
 				all->mouse.y = event.motion.y;
-				check_grid(all);
+				check_viewport(all);
 			}
-			
 			SDL_SetRenderDrawColor(all->win.render, 0x00, 0x00, 0x00, 0x00);
 			SDL_RenderClear(all->win.render);
 			
 			SDL_SetRenderDrawColor(all->win.render, 0x63, 0x63, 0x63, 0);
-			draw_vertex(all->grid, all, 3); // draw grid
-			if (all->level->sectors) //SEGA
+			draw_vertex(all->grid, all, 2); // draw grid
+			if (all->level->sectors)
 			{
 				SDL_SetRenderDrawColor(all->win.render, 0xff, 0x3b, 0xb4, 0);
-				draw_vertex(all->level->sectors->vertex, all, 8);
+				draw_vertex(all->level->sectors->vertex, all, 6);
 			}
 			SDL_SetRenderDrawColor(all->win.render, 0xff, 0xff, 0xff, 0);
 			draw_sectors(all);

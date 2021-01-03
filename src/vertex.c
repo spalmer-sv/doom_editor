@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 23:12:23 by spalmer           #+#    #+#             */
-/*   Updated: 2020/12/06 17:48:18 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/03 18:12:00 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	draw_vertex(t_vertex *vertex, t_all *all, int i)
 	while(temp)
 	{
 		//SDL_SetRenderDrawColor(all->win.render, 0x42, 0x87, 0xf5, 0);
-		rect = init_rect(temp->x * 2 - (i / 2), temp->y * 2 - (i / 2), i, i);
+		rect = init_rect(temp->x - (i / 2), temp->y - (i / 2), i, i);
 		SDL_RenderDrawRect(all->win.render, &rect);
 		temp = temp->next;
 	}

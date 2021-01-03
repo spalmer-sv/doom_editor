@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 19:58:37 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/02 23:06:16 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/03 19:25:18 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,30 @@ typedef struct			s_level
 	struct s_level		*next;
 }						t_level;
 
+typedef struct 			s_button_setup
+{
+	int x;
+	int y;
+	int size;	
+}						t_button_setup;
+
+typedef struct 			s_button
+{
+	struct s_button_setup	up;
+	struct s_button_setup	down;
+	
+}						t_button;
+
+
 typedef struct			s_all
 {
 	t_win				win;
 	t_mouse				mouse;
 	t_setup				setup;
 	t_vertex			*grid;
-	//t_sector			*sectors;
 	t_level				*level; // current lvl
 	t_level				*zero_level;
+	t_button			button;
 	}						t_all;
 
 void		init_win(t_win *win);
@@ -99,5 +114,10 @@ void	draw_sectors(t_all *all);
 t_sector	*new_sector(t_all *all);
 void		add_sector(t_all *all, t_sector *new);
 void	draw_menu(t_all *all);
+void		check_viewport(t_all *all);
+void	init_menu_button(t_all *all);
+void		tools(t_all *all);
+int			in_button(t_button_setup	button, t_all *all);
+void	init_level(t_all	*all);
 
 #endif

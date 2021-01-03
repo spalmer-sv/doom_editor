@@ -6,13 +6,13 @@
 #    By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/23 23:28:44 by aghar             #+#    #+#              #
-#    Updated: 2020/12/12 20:42:10 by spalmer          ###   ########.fr        #
+#    Updated: 2021/01/03 19:25:27 by spalmer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = wolf3d
+NAME = doom
 CC = clang
-FILES = begin init error events grid vertex draw_line sector menu
+FILES = begin init error events grid vertex draw_line sector menu tools levels
 LIBFT_DIR = libft/
 SRC = $(addprefix src/, $(addsuffix .c, $(FILES)))
 OBJ = $(addprefix obj/, $(addsuffix .o, $(FILES)))

@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 18:43:22 by spalmer           #+#    #+#             */
-/*   Updated: 2020/12/13 01:28:33 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/03 18:49:12 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	in_grid(t_all *all)
 	int y_first;
 	int x_last;
 	int y_last;
+
+	//printf("mouse x = %i ,  mouse y = %i, grid step = %i\n", all->mouse.x, all->mouse.y, all->setup.grid_step);
 
 	x_first = all->mouse.x - (all->setup.grid_step / 2);
 	y_first = all->mouse.y - (all->setup.grid_step / 2);
@@ -34,6 +36,7 @@ int	in_grid(t_all *all)
 			{
 				all->mouse.x = x_current;
 				all->mouse.y = y_first;
+				//printf("mouse x = %i ,  mouse y = %i, grid step = %i", all->mouse.x, all->mouse.y, all->setup.grid_step);
 				return (1);
 			}
 			x_current++;
@@ -47,9 +50,9 @@ int	in_grid(t_all *all)
 void	check_grid(t_all *all)
 {
 	t_vertex	*temp;
-	
-	if(in_grid(all) == 1)
+	if (1) // check where this point
 	{
+		in_grid(all);
 		temp = new_vertex(all->mouse.x, all->mouse.y);
 		if (all->level->sectors == NULL || all->level->sectors->close == 1)
 		{
@@ -70,6 +73,7 @@ void		get_grid(t_all *all)
 
 	i = 0;
 	SDL_GetRendererOutputSize(all->win.render, &all->win.w, &all->win.h);
+	//printf("w =    %i, h =   %i\n", all->win.w, all->win.h);
 	while (i < (all->win.h * all->win.w))
 	{
 		if (i % all->setup.grid_step == 0 && (i / all->win.w) % all->setup.grid_step == 0)
