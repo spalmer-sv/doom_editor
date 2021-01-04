@@ -19,9 +19,9 @@
 #ifndef __FT_STROKE_H__
 #define __FT_STROKE_H__
 
-#include <ft2build.h>
-#include FT_OUTLINE_H
-#include FT_GLYPH_H
+#include "../../../../Headers/ft2build.h"
+#include FT_OUTLINE_H"../../../../Headers/freetype/ftoutln.h"
+#include FT_GLYPH_H"../../../../Headers/freetype/ftglyph.h"
 
 
 FT_BEGIN_HEADER

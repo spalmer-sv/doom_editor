@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 19:21:01 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/03 20:42:24 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/04 17:56:49 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,15 @@ void    go_low_lvl(t_all *all)
     
     temp = all->zero_level;
     
+	if (all->level->num - 1 == 0)
+		all->lower_level = NULL;
     while (temp->num != all->level->num - 1)
-        temp = temp->next;
+    {
+		if (temp->num == all->level->num - 2)
+			all->lower_level = temp;
+		temp = temp->next;
+		
+	}
     all->level = temp;
 }
 
@@ -28,7 +35,10 @@ void		tools(t_all *all)
 	if(in_button(all->button.up, all))
 	{
 		if (all->level->next)
+		{
+			all->lower_level = all->level;
 			all->level = all->level->next;
+		}
 	}
 	
 	if(in_button(all->button.down, all))
@@ -36,4 +46,5 @@ void		tools(t_all *all)
 		if (all->level->num != 0)
 			go_low_lvl(all);
 	}
+
 }

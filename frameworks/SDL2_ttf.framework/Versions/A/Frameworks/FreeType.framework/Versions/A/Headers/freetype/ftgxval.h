@@ -28,8 +28,8 @@
 #ifndef __FTGXVAL_H__
 #define __FTGXVAL_H__
 
-#include <ft2build.h>
-#include FT_FREETYPE_H
+#include "../../../../Headers/ft2build.h"
+#include FT_FREETYPE_H"../../../../Headers/freetype/freetype.h"
 
 #ifdef FREETYPE_H
 #error "freetype.h of FreeType 1 has been loaded!"

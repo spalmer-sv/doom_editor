@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 19:00:11 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/03 18:13:31 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/04 15:59:44 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	bresenham(int x0, int y0, int x1, int y1, t_all *all)
 	}	
 }
 
-void	draw_one_sector(t_sector *sector, t_all *all)
+void	draw_one_sector(t_sector *sector, t_all *all, int color)
 {
 	t_vertex *temp;
 	t_vertex first;
@@ -58,7 +58,7 @@ void	draw_one_sector(t_sector *sector, t_all *all)
 		return ;
 	if (!sector->vertex->next)
 		return ;
-	SDL_SetRenderDrawColor(all->win.render, 0xff, 0xff, 0xff, 0);
+	SDL_SetRenderDrawColor(all->win.render, color, color, color, 0);
 	while(temp->next)
 	{
 		first.x = temp->x;
@@ -72,14 +72,27 @@ void	draw_one_sector(t_sector *sector, t_all *all)
 
 void	draw_sectors(t_all *all)
 {
-	t_sector *temp;
+	t_sector	*current;
+	t_sector	*lower = NULL;
 	
-	temp = all->level->sectors;
-	if (!temp || !temp->vertex)
-		return ;
-	while (temp)
+	current = all->level->sectors;
+	if (all->lower_level)
+		lower = all->lower_level->sectors;
+
+	if (lower != NULL)
 	{
-		draw_one_sector(temp, all);
-		temp = temp->next;
+		//printf("lower = %i\n", all->lower_level->num);
+		while (lower)
+		{
+				draw_one_sector(lower, all, 100);
+				lower = lower->next;
+		}
+	}
+
+	while (current)
+	{
+		draw_one_sector(current, all, 255);
+		current = current->next;
+		//printf("print current");
 	}
 }

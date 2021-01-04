@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 20:41:40 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/03 19:21:22 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/04 17:57:32 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ void	init_menu_button(t_all *all)
 	all->button.down.x = 100; // down lvl
 	all->button.down.y = 150;
 	all->button.down.size = 20;
+	
+	all->button.edit_vectors.x = 100; // down lvl
+	all->button.edit_vectors.y = 250;
+	all->button.edit_vectors.size = 20;
+	all->button.edit_vectors.press = 0;
 }
 
 void	draw_menu(t_all *all)

@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 19:24:44 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/03 20:42:04 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/04 15:47:05 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ void	init_level(t_all	*all)
 		lvl++;
 	}
     all->zero_level = all->level;
-   print_lvl(all);
+	all->lower_level = NULL;
+   //print_lvl(all);
 }
 
 

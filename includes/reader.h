@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 19:58:37 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/03 19:25:18 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/04 17:52:50 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,15 @@ typedef struct 			s_button_setup
 {
 	int x;
 	int y;
-	int size;	
+	int size;
+	int	press; //1-yes  / 0-no
 }						t_button_setup;
 
 typedef struct 			s_button
 {
 	struct s_button_setup	up;
 	struct s_button_setup	down;
+	struct s_button_setup	edit_vectors;
 	
 }						t_button;
 
@@ -94,6 +96,7 @@ typedef struct			s_all
 	t_setup				setup;
 	t_vertex			*grid;
 	t_level				*level; // current lvl
+	t_level				*lower_level; // предыдущий уровень
 	t_level				*zero_level;
 	t_button			button;
 	}						t_all;

@@ -29,10 +29,10 @@
 #endif
 
 
-#include <ft2build.h>
-#include FT_CONFIG_CONFIG_H
-#include FT_TYPES_H
-#include FT_ERRORS_H
+#include "../ft2build.h"
+#include FT_CONFIG_CONFIG_H"config/ftconfig.h"
+#include FT_TYPES_H"fttypes.h"
+#include FT_ERRORS_H"fterrors.h"
 
 
 FT_BEGIN_HEADER

@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 22:00:38 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/03 18:31:56 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/04 14:49:09 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	check_event(t_all *all)
 				draw_vertex(all->level->sectors->vertex, all, 6);
 			}
 			SDL_SetRenderDrawColor(all->win.render, 0xff, 0xff, 0xff, 0);
-			draw_sectors(all);
+			draw_sectors(all); 
 
 			draw_menu(all);
 			
