@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 22:00:38 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/04 14:49:09 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/05 20:46:36 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,31 @@ void	check_event(t_all *all)
 			if (event.type == SDL_KEYDOWN)
 				check_botton(&event, all, &quit);
 			
-			if( event.type == SDL_MOUSEBUTTONDOWN )
+			if( event.type == SDL_MOUSEBUTTONDOWN)
 			{
 				all->mouse.x = event.motion.x;
 				all->mouse.y = event.motion.y;
 				check_viewport(all);
 			}
+			// if(all->button.edit_vectors.press == 0 && all->mouse.vertex_to_change && event.type == SDL_MOUSEMOTION )
+			// {
+			// 	all->mouse.vertex_to_change->x = event.motion.x;
+			// 	all->mouse.vertex_to_change->y = event.motion.y;
+			// 	printf ("x move %i  ", all->mouse.vertex_to_change->x);
+    		// 	printf ("y move %i\n", all->mouse.vertex_to_change->y);
+			// }
 			SDL_SetRenderDrawColor(all->win.render, 0x00, 0x00, 0x00, 0x00);
 			SDL_RenderClear(all->win.render);
 			
 			SDL_SetRenderDrawColor(all->win.render, 0x63, 0x63, 0x63, 0);
 			draw_vertex(all->grid, all, 2); // draw grid
-			if (all->level->sectors)
+			if (all->level->sectors && all->button.edit_vectors.press == 0)
 			{
 				SDL_SetRenderDrawColor(all->win.render, 0xff, 0x3b, 0xb4, 0);
 				draw_vertex(all->level->sectors->vertex, all, 6);
 			}
+			if (all->button.edit_vectors.press == 1)
+				draw_all_vertex(all);
 			SDL_SetRenderDrawColor(all->win.render, 0xff, 0xff, 0xff, 0);
 			draw_sectors(all); 
 

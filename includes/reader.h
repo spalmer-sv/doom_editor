@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 19:58:37 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/04 17:52:50 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/05 21:02:03 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,6 @@ typedef struct			s_win
 	int 				w;
 	int					h;
 }						t_win;
-
-typedef struct			s_mouse
-{
-	int 				x;
-	int					y;
-}						t_mouse;
 
 typedef struct			s_setup
 {
@@ -88,6 +82,12 @@ typedef struct 			s_button
 	
 }						t_button;
 
+typedef struct			s_mouse
+{
+	int 				x;
+	int					y;
+	t_vertex			*vertex_to_change;
+}						t_mouse;
 
 typedef struct			s_all
 {
@@ -122,5 +122,12 @@ void	init_menu_button(t_all *all);
 void		tools(t_all *all);
 int			in_button(t_button_setup	button, t_all *all);
 void	init_level(t_all	*all);
+void    mode_edit_vector(t_all *all);
+void    draw_all_vertex(t_all *all);
+void    round_to_grid(t_all *all);\
+int	in_grid(t_all *all);
+
+		
+
 
 #endif

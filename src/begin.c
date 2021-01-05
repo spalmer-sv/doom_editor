@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 18:37:48 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/03 19:50:44 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/05 20:43:49 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	setup(t_all *all)
 	all->setup.scale = 100;
 	all->setup.grid_step = 10;
 	all->grid = NULL;
+	all->mouse.vertex_to_change = NULL;
 	//all->level = new_lvl(1);
 	init_level(all);
 	init_menu_button(all);

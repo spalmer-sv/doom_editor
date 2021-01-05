@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 18:43:22 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/03 18:49:12 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/05 19:17:42 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	in_grid(t_all *all)
 			{
 				all->mouse.x = x_current;
 				all->mouse.y = y_first;
-				//printf("mouse x = %i ,  mouse y = %i, grid step = %i", all->mouse.x, all->mouse.y, all->setup.grid_step);
+				//printf("vetex    mouse x = %i ,  mouse y = %i\n", all->mouse.x, all->mouse.y);
 				return (1);
 			}
 			x_current++;
@@ -52,7 +52,8 @@ void	check_grid(t_all *all)
 	t_vertex	*temp;
 	if (1) // check where this point
 	{
-		in_grid(all);
+		//in_grid(all);
+		round_to_grid(all);
 		temp = new_vertex(all->mouse.x, all->mouse.y);
 		if (all->level->sectors == NULL || all->level->sectors->close == 1)
 		{

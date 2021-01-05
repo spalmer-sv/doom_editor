@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 20:41:40 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/04 17:57:32 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/05 18:10:51 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,10 @@ void		check_viewport(t_all *all)
 {
 	if (all->mouse.x <= all->win.w / 6)
 		tools(all);
-	else
+	else if (all->button.edit_vectors.press == 0)
 		check_grid(all);
+	else if (all->button.edit_vectors.press == 1)
+		mode_edit_vector(all);
 }
 
 void	init_menu_button(t_all *all)
@@ -67,16 +69,19 @@ void	draw_menu(t_all *all)
 	SDL_Rect menu;
 	SDL_Rect up;
 	SDL_Rect down;
+	SDL_Rect edit_vectors;
 
 	//printf("win_w = %i, up_x =%i, up_y =%i, up_size =%i\n", all->win.w, all->button.up.x, all->button.up.y, all->button.up.size);
 	up = init_rect(all->button.up.x, all->button.up.y, all->button.up.size, all->button.up.size);
 	down = init_rect(all->button.down.x, all->button.down.y, all->button.down.size, all->button.down.size);
 	menu = init_rect(0, 0, all->win.w / 6, all->win.h);
+	edit_vectors = init_rect(all->button.edit_vectors.x, all->button.edit_vectors.y, all->button.edit_vectors.size, all->button.edit_vectors.size);
 	SDL_SetRenderDrawColor(all->win.render, 0x63, 0x63, 0x63, 0);
 	SDL_RenderFillRect(all->win.render, &menu);
 	SDL_SetRenderDrawColor(all->win.render, 0xff, 0x00, 0x00, 0);
 	SDL_RenderFillRect(all->win.render, &up);
 	SDL_RenderFillRect(all->win.render, &down);
+	SDL_RenderFillRect(all->win.render, &edit_vectors);
 //	draw_text(all);
 	
-}
+			}
