@@ -6,11 +6,45 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 17:25:05 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/05 21:02:07 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/06 18:16:07 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "reader.h"
+
+void	change_vertex(t_all *all)
+{
+	// t_level *temp;
+	
+	// temp = all->level;
+	// while (temp->sectors->number != all->mouse.sector)
+	// 	temp->sectors = temp->sectors->next;
+	// while (temp->sectors->vertex->number != all->mouse.vertex)
+	// 	temp->sectors->vertex = temp->sectors->vertex->next;
+	// printf("sector %i vertex %i\n",temp->sectors->number, temp->sectors->vertex->number);
+	// temp->sectors->vertex->x = all->mouse.x_vertex;
+	// temp->sectors->vertex->y = all->mouse.y_vertex;
+
+	t_sector *temp;
+	t_vertex *vtemp;
+	
+	temp = all->level->sectors;
+	
+	while (all->level->sectors->number != all->mouse.sector)
+		all->level->sectors = all->level->sectors->next;
+	vtemp = all->level->sectors->vertex;
+	
+	while (all->level->sectors->vertex->number != all->mouse.vertex)
+		all->level->sectors->vertex = all->level->sectors->vertex->next;
+	//printf("sector %i vertex %i\n",temp->sectors->number, temp->sectors->vertex->number);
+	all->level->sectors->vertex->x = all->mouse.x;
+	all->level->sectors->vertex->y = all->mouse.y;
+	
+	all->level->sectors->vertex = vtemp;
+	all->level->sectors = temp;
+	
+	return ;
+}
 
 void    draw_all_vertex(t_all *all)
 {
@@ -29,8 +63,6 @@ void    draw_all_vertex(t_all *all)
 
 void    round_to_grid(t_all *all)
 {
-    // printf ("x before %i  ", all->mouse.x);
-    // printf ("y before %i\n", all->mouse.y);
     all->mouse.x = (int)(round((float)all->mouse.x / (float)all->setup.grid_step)
         * all->setup.grid_step);
     all->mouse.y = (int)(round((float)all->mouse.y / (float)all->setup.grid_step)
@@ -39,7 +71,7 @@ void    round_to_grid(t_all *all)
 
 int		itis_vertex(t_all *all)
 {
-	t_sector *temp;
+	t_sector 	*temp;
 	t_vertex	*vertex;
 
     temp = all->level->sectors;
@@ -52,8 +84,12 @@ int		itis_vertex(t_all *all)
 		{
 			if (vertex->x == all->mouse.x && vertex->y == all->mouse.y)
 			{
-				all->mouse.vertex_to_change = vertex;
 				//printf("YES");
+				all->mouse.flag_edit_vertex = 1;
+				all->mouse.sector = temp->number;
+				all->mouse.vertex = vertex->number;
+				all->mouse.x_vertex = all->mouse.x;
+				all->mouse.y_vertex = all->mouse.y;
 				return (1);
 			}
 			vertex = vertex->next;
@@ -65,16 +101,12 @@ int		itis_vertex(t_all *all)
 
 void	mode_edit_vector(t_all *all)
 {
-	//in_grid(all);
 	round_to_grid(all);
 	if (itis_vertex(all) == 1)
+	{
+		// printf("TRUE sector = %i, vertex = %i\n", all->mouse.sector, all->mouse.vertex);
 		return ;
-	// 	printf("YES");
-	// else
-	// 	printf("NO");
-	
-    // check_all vectors of level
-	
-    // move and drag;
+	}
+    	// move and drag;
     return ;
 }				

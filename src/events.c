@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 22:00:38 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/05 20:46:36 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/06 18:00:35 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,16 @@ void	check_event(t_all *all)
 				all->mouse.y = event.motion.y;
 				check_viewport(all);
 			}
-			// if(all->button.edit_vectors.press == 0 && all->mouse.vertex_to_change && event.type == SDL_MOUSEMOTION )
-			// {
-			// 	all->mouse.vertex_to_change->x = event.motion.x;
-			// 	all->mouse.vertex_to_change->y = event.motion.y;
-			// 	printf ("x move %i  ", all->mouse.vertex_to_change->x);
-    		// 	printf ("y move %i\n", all->mouse.vertex_to_change->y);
-			// }
+			if(all->mouse.flag_edit_vertex == 1 && all->button.edit_vectors.press == 1 && event.type == SDL_MOUSEBUTTONUP)
+			{
+				all->mouse.x = event.motion.x;
+				all->mouse.y = event.motion.y;
+				round_to_grid(all);
+				if (all->mouse.x != all->mouse.x_vertex && all->mouse.y != all->mouse.y_vertex)
+					change_vertex(all);
+			}
 			SDL_SetRenderDrawColor(all->win.render, 0x00, 0x00, 0x00, 0x00);
-			SDL_RenderClear(all->win.render);
+			SDL_RenderClear(all->win.render);    
 			
 			SDL_SetRenderDrawColor(all->win.render, 0x63, 0x63, 0x63, 0);
 			draw_vertex(all->grid, all, 2); // draw grid
@@ -73,5 +74,16 @@ void	check_event(t_all *all)
 			SDL_RenderPresent(all->win.render);
 		}
 	}
+	////////////////printf number of sectors
+	// while (all->level->sectors)
+	// {
+	// 	while(all->level->sectors->vertex)
+	// 	{
+	// 		printf ("vertex %i\n", all->level->sectors->vertex->number);
+	// 		all->level->sectors->vertex = all->level->sectors->vertex->next;
+	// 	}
+	// 	printf ("sectors%i\n", all->level->sectors->number);
+	// 	all->level->sectors = all->level->sectors->next;
+	// }
 	destroy(all);
 }

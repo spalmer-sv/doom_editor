@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 23:12:23 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/05 18:00:12 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/06 16:32:27 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,26 @@
 int			ft_lstaddend(t_vertex **all, t_vertex *new)
 {
 	t_vertex	*temp;
-
+	int num = 0;
+	
 	if (!new)
 		return (0);
 	temp = *all;
 	if (!temp)
+	{
+		new->number = 0;
 		*all = new;
+	}
 	else
 	{
 		while (temp->next)
+		{
+			num = temp->number;
+			num++;
 			temp = temp->next;
+		}
+		num++;
+		new->number = num;
 		temp->next = new;
 	}
 	return (1);

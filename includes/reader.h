@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 19:58:37 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/05 21:02:03 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/06 17:10:02 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct			s_vertex
 {
 	int 				x;
 	int 				y;
+	int					number;
 	struct s_vertex		*next;
 }						t_vertex;
 
@@ -57,12 +58,13 @@ typedef struct			s_sector
 	struct s_sector		*next;
 	int					close; //1 if close
 	int					cnt; // cnt of vertexes
+	int					number;
 }						t_sector;
 
 typedef struct			s_level
 {
 	t_sector			*sectors;
-	int					num;
+	int					num; //number of levels
 	struct s_level		*next;
 }						t_level;
 
@@ -86,7 +88,12 @@ typedef struct			s_mouse
 {
 	int 				x;
 	int					y;
-	t_vertex			*vertex_to_change;
+	// all for edit vertex
+	int					flag_edit_vertex;
+	int					sector;
+	int					vertex;
+	int					x_vertex;
+	int					y_vertex;
 }						t_mouse;
 
 typedef struct			s_all
@@ -126,7 +133,7 @@ void    mode_edit_vector(t_all *all);
 void    draw_all_vertex(t_all *all);
 void    round_to_grid(t_all *all);\
 int	in_grid(t_all *all);
-
+void	change_vertex(t_all *all);
 		
 
 

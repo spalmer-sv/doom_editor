@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 20:41:40 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/05 18:10:51 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/06 16:46:25 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,4 @@ void	draw_menu(t_all *all)
 	SDL_RenderFillRect(all->win.render, &edit_vectors);
 //	draw_text(all);
 	
-			}
+}
