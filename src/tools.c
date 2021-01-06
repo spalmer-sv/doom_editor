@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 19:21:01 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/04 18:13:20 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/06 19:08:29 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,18 @@ void		tools(t_all *all)
 		}
 	}
 	
-	if(in_button(all->button.down, all))
+	else if(in_button(all->button.down, all))
 	{
 		if (all->level->num != 0)
 			go_low_lvl(all);
 	}
 	
-	if(in_button(all->button.edit_vectors, all))
-		all->button.edit_vectors.press = all->button.edit_vectors.press == 0 ? 1: 0;
+	else if(in_button(all->button.edit_vertex, all))
+		all->button.edit_vertex.press = all->button.edit_vertex.press == 0 ? 1: 0;
+
+	else if(in_button(all->button.remove_vertex, all))
+	{
+		all->button.remove_vertex.press = all->button.remove_vertex.press == 0 ? 1: 0;
+		//printf("HERE");
+	}
 }
