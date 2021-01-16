@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 17:25:05 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/06 19:14:01 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/16 17:12:23 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,30 +33,6 @@ void	change_vertex(t_all *all)
 	all->level->sectors = temp;
 	all->mouse.flag_edit_vertex = 0;
 	
-	return ;
-}
-
-void	remove_vertex(t_all *all)
-{
-	t_sector *temp;
-	t_vertex *vtemp;
-	
-	temp = all->level->sectors;
-	
-	while (all->level->sectors->number != all->mouse.sector)
-		all->level->sectors = all->level->sectors->next;
-	vtemp = all->level->sectors->vertex;
-	
-	while (all->level->sectors->vertex->next->number != all->mouse.vertex)
-		all->level->sectors->vertex = all->level->sectors->vertex->next;
-	//printf("sector %i vertex %i\n",temp->sectors->number, temp->sectors->vertex->number);
-	all->level->sectors->vertex->next = all->level->sectors->vertex->next->next;
-
-	
-	all->level->sectors->vertex = vtemp;
-	all->level->sectors = temp;
-	all->mouse.flag_remove_vertex = 0;
-	printf ("HERE");
 	return ;
 }
 
@@ -108,15 +84,7 @@ int		itis_vertex(t_all *all)
 					all->mouse.x_vertex = all->mouse.x;
 					all->mouse.y_vertex = all->mouse.y;
 				}
-				if (all->button.remove_vertex.press == 1)
-				{
-					all->mouse.flag_remove_vertex = 1;
-					all->mouse.sector = temp->number;
-					all->mouse.vertex = vertex->number;
-					all->mouse.x_vertex = all->mouse.x;
-					all->mouse.y_vertex = all->mouse.y;
-					//printf ("HERE");
-				}
+				
 				return (1);
 			}
 			vertex = vertex->next;
@@ -136,11 +104,4 @@ void	mode_edit_vertex(t_all *all)
 	}
     	// move and drag;
     return ;
-}		
-
-void	mode_remove_vertex(t_all *all)
-{
-	round_to_grid(all);
-	itis_vertex(all);
-	remove_vertex(all);
-}			
+}				

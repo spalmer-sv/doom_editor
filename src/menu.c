@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 20:41:40 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/06 18:54:09 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/16 17:11:11 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,10 @@ void		check_viewport(t_all *all)
 {
 	if (all->mouse.x <= all->win.w / 6)
 		tools(all);
-	else if (all->button.edit_vertex.press == 0 && all->button.remove_vertex.press == 0)
+	else if (all->button.edit_vertex.press == 0)
 		check_grid(all);
 	else if (all->button.edit_vertex.press == 1)
 		mode_edit_vertex(all);
-	else if (all->button.remove_vertex.press == 1)
-		mode_remove_vertex(all);
 }
 
 void	init_menu_button(t_all *all)
@@ -64,11 +62,6 @@ void	init_menu_button(t_all *all)
 	all->button.edit_vertex.y = 250;
 	all->button.edit_vertex.size = 20;
 	all->button.edit_vertex.press = 0;
-
-	all->button.remove_vertex.x = 100; 
-	all->button.remove_vertex.y = 300;
-	all->button.remove_vertex.size = 20;
-	all->button.remove_vertex.press = 0;
 }
 
 void	draw_menu(t_all *all)
@@ -84,14 +77,12 @@ void	draw_menu(t_all *all)
 	down = init_rect(all->button.down.x, all->button.down.y, all->button.down.size, all->button.down.size);
 	menu = init_rect(0, 0, all->win.w / 6, all->win.h);
 	edit_vertex = init_rect(all->button.edit_vertex.x, all->button.edit_vertex.y, all->button.edit_vertex.size, all->button.edit_vertex.size);
-	remove_vertex = init_rect(all->button.remove_vertex.x, all->button.remove_vertex.y, all->button.remove_vertex.size, all->button.remove_vertex.size);
 	SDL_SetRenderDrawColor(all->win.render, 0x63, 0x63, 0x63, 0);
 	SDL_RenderFillRect(all->win.render, &menu);
 	SDL_SetRenderDrawColor(all->win.render, 0xff, 0x00, 0x00, 0);
 	SDL_RenderFillRect(all->win.render, &up);
 	SDL_RenderFillRect(all->win.render, &down);
 	SDL_RenderFillRect(all->win.render, &edit_vertex);
-	SDL_RenderFillRect(all->win.render, &remove_vertex);
 //	draw_text(all);
 	
 }

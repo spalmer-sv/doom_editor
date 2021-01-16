@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 22:00:38 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/06 18:55:25 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/16 17:12:59 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ void	check_event(t_all *all)
 			
 			if( event.type == SDL_MOUSEBUTTONDOWN)
 			{
-				all->mouse.x = event.motion.x;
-				all->mouse.y = event.motion.y;
+				all->mouse.x = event.button.x;
+				all->mouse.y = event.button.y;
 				check_viewport(all);
 			}
 			if(all->mouse.flag_edit_vertex == 1 && all->button.edit_vertex.press == 1 && event.type == SDL_MOUSEBUTTONUP)
 			{
-				all->mouse.x = event.motion.x;
-				all->mouse.y = event.motion.y;
+				all->mouse.x = event.button.x;
+				all->mouse.y = event.button.y;
 				round_to_grid(all);
 				if (all->mouse.x != all->mouse.x_vertex && all->mouse.y != all->mouse.y_vertex)
 					change_vertex(all);
@@ -59,22 +59,21 @@ void	check_event(t_all *all)
 			
 			SDL_SetRenderDrawColor(all->win.render, 0x63, 0x63, 0x63, 0);
 			draw_vertex(all->grid, all, 2); // draw grid
-			if (all->level->sectors && all->button.edit_vertex.press == 0 && all->button.remove_vertex.press == 0)
+			if (all->level->sectors && all->button.edit_vertex.press == 0)
 			{
 				SDL_SetRenderDrawColor(all->win.render, 0xff, 0x3b, 0xb4, 0);
 				draw_vertex(all->level->sectors->vertex, all, 6);
 			}
-			if (all->button.edit_vertex.press == 1 || all->button.remove_vertex.press == 1)
+			if (all->button.edit_vertex.press == 1 )
 				draw_all_vertex(all);
 			SDL_SetRenderDrawColor(all->win.render, 0xff, 0xff, 0xff, 0);
 			draw_sectors(all); 
 
 			draw_menu(all);
-			
 			SDL_RenderPresent(all->win.render);
 		}
 	}
-	////////////////printf number of sectors
+	//////////////printf number of sectors
 	// while (all->level->sectors)
 	// {
 	// 	while(all->level->sectors->vertex)

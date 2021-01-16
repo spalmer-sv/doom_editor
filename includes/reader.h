@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 19:58:37 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/06 18:50:20 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/16 17:10:36 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ typedef struct 			s_button
 	struct s_button_setup	up;
 	struct s_button_setup	down;
 	struct s_button_setup	edit_vertex;
-	struct s_button_setup	remove_vertex;
 }						t_button;
 
 typedef struct			s_mouse
@@ -90,11 +89,11 @@ typedef struct			s_mouse
 	int					y;
 	// all for edit vertex
 	int					flag_edit_vertex;
-	int					flag_remove_vertex;
 	int					sector;
 	int					vertex;
 	int					x_vertex;
 	int					y_vertex;
+	t_vertex			*vertex_delete;
 }						t_mouse;
 
 typedef struct			s_all
@@ -107,35 +106,35 @@ typedef struct			s_all
 	t_level				*lower_level; // предыдущий уровень
 	t_level				*zero_level;
 	t_button			button;
+	
 	}						t_all;
 
 void		init_win(t_win *win);
 SDL_Window	*init_window(t_win *win);
 void		error(const char *str, int fd);
-void	check_event(t_all *all);
+void		check_event(t_all *all);
 SDL_Rect	init_rect(float x, float y, int w, int h);
-void	get_grid(t_all *all);
-void	draw_vertex(t_vertex *vertex, t_all *all, int i);
-void	check_grid(t_all *all);
+void		get_grid(t_all *all);
+void		draw_vertex(t_vertex *vertex, t_all *all, int i);
+void		check_grid(t_all *all);
 int			ft_lstaddend(t_vertex **tetrs, t_vertex *new);
 t_vertex	*new_vertex(int x, int y);
-void	bresenham(int x0, int y0, int x1, int y1, t_all *all);
-void	destroy(t_all *all);
-void	draw_sectors(t_all *all);
+void		bresenham(int x0, int y0, int x1, int y1, t_all *all);
+void		destroy(t_all *all);
+void		draw_sectors(t_all *all);
 t_sector	*new_sector(t_all *all);
 void		add_sector(t_all *all, t_sector *new);
-void	draw_menu(t_all *all);
+void		draw_menu(t_all *all);
 void		check_viewport(t_all *all);
-void	init_menu_button(t_all *all);
+void		init_menu_button(t_all *all);
 void		tools(t_all *all);
 int			in_button(t_button_setup	button, t_all *all);
-void	init_level(t_all	*all);
-void    mode_edit_vertex(t_all *all);
-void    draw_all_vertex(t_all *all);
-void    round_to_grid(t_all *all);\
-int	in_grid(t_all *all);
-void	change_vertex(t_all *all);
-void	mode_remove_vertex(t_all *all);		
+void		init_level(t_all	*all);
+void		mode_edit_vertex(t_all *all);
+void		draw_all_vertex(t_all *all);
+void		round_to_grid(t_all *all);\
+int			in_grid(t_all *all);
+void		change_vertex(t_all *all);	
 
 
 #endif
