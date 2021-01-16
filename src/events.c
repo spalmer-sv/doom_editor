@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 22:00:38 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/16 17:12:59 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/16 18:24:41 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@ void	check_botton(SDL_Event *event, t_all *all, int *quit)
 {
 	if (event->key.keysym.sym == SDLK_ESCAPE)
 		*quit = 1;
+	if (event->key.keysym.sym == SDLK_KP_PLUS)
+		all->setup.scale += 0.1;
+	if (event->key.keysym.sym == SDLK_KP_MINUS && all->setup.scale > 1)
+		all->setup.scale -= 0.1;
 }
 
 void	check_event(t_all *all)

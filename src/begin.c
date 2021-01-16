@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 18:37:48 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/06 17:05:32 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/16 18:00:56 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	setup(t_all *all)
 {
-	all->setup.scale = 100;
+	all->setup.scale = 1;
+	all->setup.move_x = 0;
+	all->setup.move_y = 0;
 	all->setup.grid_step = 10;
 	all->grid = NULL;
 //	all->mouse.vertex_to_change = NULL;

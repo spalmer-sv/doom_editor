@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 19:00:11 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/04 15:59:44 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/16 17:51:38 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	draw_one_sector(t_sector *sector, t_all *all, int color)
 		first.y = temp->y;
 		second.x = temp->next->x;
 		second.y = temp->next->y;
-		bresenham(first.x, first.y, second.x, second.y, all);
+		bresenham(first.x * all->setup.scale , first.y * all->setup.scale, second.x * all->setup.scale, second.y * all->setup.scale, all);
 		temp = temp->next;
 	}
 }

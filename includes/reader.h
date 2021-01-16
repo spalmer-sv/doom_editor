@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 19:58:37 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/16 17:10:36 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/16 18:28:57 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ typedef struct			s_win
 
 typedef struct			s_setup
 {
-	int 				scale;
+	float 				scale;
+	int					move_x;
+	int					move_y;
 	int					grid_step; // distanse between grids vertex
 }						t_setup;
 
@@ -85,8 +87,8 @@ typedef struct 			s_button
 
 typedef struct			s_mouse
 {
-	int 				x;
-	int					y;
+	float 				x;
+	float					y;
 	// all for edit vertex
 	int					flag_edit_vertex;
 	int					sector;
@@ -118,7 +120,7 @@ void		get_grid(t_all *all);
 void		draw_vertex(t_vertex *vertex, t_all *all, int i);
 void		check_grid(t_all *all);
 int			ft_lstaddend(t_vertex **tetrs, t_vertex *new);
-t_vertex	*new_vertex(int x, int y);
+t_vertex	*new_vertex(int x, int y, t_all *all);
 void		bresenham(int x0, int y0, int x1, int y1, t_all *all);
 void		destroy(t_all *all);
 void		draw_sectors(t_all *all);

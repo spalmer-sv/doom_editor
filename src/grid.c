@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 18:43:22 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/06 15:56:43 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/16 18:37:27 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	check_grid(t_all *all)
 	if (1) // check where this point
 	{
 		round_to_grid(all);
-		temp = new_vertex(all->mouse.x, all->mouse.y);
+		temp = new_vertex(all->mouse.x, all->mouse.y, all);
 		if (all->level->sectors == NULL || all->level->sectors->close == 1)
 		{
 			if (all->level->sectors == NULL)
@@ -70,8 +70,8 @@ void	check_grid(t_all *all)
 				num_sector++;
 				add_sector(all, new_sector(all));
 			}
-			all->level->sectors->x0 = all->mouse.x;
-			all->level->sectors->y0 = all->mouse.y;
+			all->level->sectors->x0 = all->mouse.x / all->setup.scale;
+			all->level->sectors->y0 = all->mouse.y  / all->setup.scale;
 			all->level->sectors->number = num_sector++;
 		}
 		if (all->level->sectors && all->level->sectors->close == 0)
@@ -95,7 +95,7 @@ void		get_grid(t_all *all)
 	while (i < (all->win.h * all->win.w))
 	{
 		if (i % all->setup.grid_step == 0 && (i / all->win.w) % all->setup.grid_step == 0)
-			ft_lstaddend(&all->grid, new_vertex(i % all->win.w, i / all->win.w));
+			ft_lstaddend(&all->grid, new_vertex(i % all->win.w, i / all->win.w, all));
 		i++;
 	}
 }

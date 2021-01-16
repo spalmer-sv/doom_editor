@@ -6,7 +6,7 @@
 /*   By: spalmer <spalmer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 20:41:40 by spalmer           #+#    #+#             */
-/*   Updated: 2021/01/16 17:11:11 by spalmer          ###   ########.fr       */
+/*   Updated: 2021/01/16 18:36:18 by spalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int			in_button(t_button_setup	button, t_all *all)
 
 
 
-void		check_viewport(t_all *all)
+void		 check_viewport(t_all *all)
 {
 	if (all->mouse.x <= all->win.w / 6)
 		tools(all);
